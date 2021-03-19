@@ -1,8 +1,10 @@
-from flask import Flask
+from flask import Flask, request
 
 app = Flask(__name__)
 
 
-@app.route("/")
+@app.route("/solve")
 def hello_world():
-    return "Hello, World!"
+    print(request.args)
+
+    return {"message": "ok"}
