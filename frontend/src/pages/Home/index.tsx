@@ -1,20 +1,31 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
+import { useHistory } from "react-router-dom";
+import { getCoefficientLabel, getSolveUrl } from "./utils";
 import Input from "../../components/Input";
 import styles from "./styles.module.css";
 
-const getCoefficientLabel = (index: number) => {
-  if (index === 0) return "Independent coefficient";
-
-  return `Coefficient for x ** ${index}`;
-};
-
 function App() {
+  const history = useHistory();
+
   const [degree, setDegree] = useState("0");
   const [coefficients, setCoefficients] = useState<string[]>([]);
   const [k, setK] = useState("0");
   const [initialValue, setInitialValue] = useState("0");
   const [maxNumber, setMaxNumber] = useState("0");
   const [tolerance, setTolerance] = useState("0");
+
+  const handleSubmit = useCallback(() => {
+    const url = getSolveUrl({
+      degree,
+      coefficients,
+      k,
+      initialValue,
+      maxNumber,
+      tolerance,
+    });
+
+    history.push(url);
+  }, [degree, coefficients, k, initialValue, maxNumber, tolerance, history]);
 
   useEffect(() => {
     const degreeNumber = Number(degree);
@@ -113,7 +124,7 @@ function App() {
         />
       </div>
 
-      <button className={styles.submit} type="button">
+      <button className={styles.submit} type="button" onClick={handleSubmit}>
         Solve!
       </button>
     </>
