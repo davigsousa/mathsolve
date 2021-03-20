@@ -1,0 +1,42 @@
+.results {
+  width: 100%;
+}
+
+.results > span {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0;
+  font-size: 20px;
+  margin-left: 10%;
+}
+
+.results strong {
+  color: var(--primary);
+  font-size: 25px;
+}
+
+.results > img {
+  width: 100%;
+}
+
+.submit {
+  width: 50%;
+  height: 50px;
+  border: none;
+  border-radius: 10px;
+  background-image: url("../../assets/background.jpg");
+  background-size: cover;
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+  transition: 0.2s;
+}
+
+.submit:hover {
+  font-size: 35px;
+  cursor: pointer;
+}

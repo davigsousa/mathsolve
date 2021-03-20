@@ -7,12 +7,12 @@ import styles from "./styles.module.css";
 function App() {
   const history = useHistory();
 
-  const [degree, setDegree] = useState("0");
+  const [degree, setDegree] = useState("");
   const [coefficients, setCoefficients] = useState<string[]>([]);
-  const [k, setK] = useState("0");
-  const [initialValue, setInitialValue] = useState("0");
-  const [maxNumber, setMaxNumber] = useState("0");
-  const [tolerance, setTolerance] = useState("0");
+  const [k, setK] = useState("");
+  const [initialValue, setInitialValue] = useState("");
+  const [maxNumber, setMaxNumber] = useState("");
+  const [tolerance, setTolerance] = useState("");
 
   const handleSubmit = useCallback(() => {
     const url = getSolveUrl({
@@ -34,7 +34,7 @@ function App() {
       const newCoefficients = [];
 
       for (let i = 0; i < degreeNumber + 1; i++) {
-        newCoefficients.push("0");
+        newCoefficients.push("");
       }
 
       setCoefficients(newCoefficients);
@@ -62,7 +62,7 @@ function App() {
         label="Degree"
         value={degree}
         onChange={(e) => setDegree(e.target.value)}
-        placeholder="0"
+        placeholder="-"
       />
 
       {Number(degree) > 0 && (
@@ -74,7 +74,7 @@ function App() {
               <Input
                 halfSize
                 label={getCoefficientLabel(index)}
-                placeholder="0"
+                placeholder="-"
                 value={coefficients[index]}
                 onChange={(e) => {
                   const newCoefficients = coefficients.slice();
@@ -96,7 +96,7 @@ function App() {
           label="k value"
           value={k}
           onChange={(e) => setK(e.target.value)}
-          placeholder="0"
+          placeholder="-"
         />
 
         <Input
@@ -104,7 +104,7 @@ function App() {
           label="Iterative initial value"
           value={initialValue}
           onChange={(e) => setInitialValue(e.target.value)}
-          placeholder="0"
+          placeholder="-"
         />
 
         <Input
@@ -112,7 +112,7 @@ function App() {
           label="Max iterations"
           value={maxNumber}
           onChange={(e) => setMaxNumber(e.target.value)}
-          placeholder="0"
+          placeholder="-"
         />
 
         <Input
@@ -120,7 +120,7 @@ function App() {
           label="Method numerical tolerance"
           value={tolerance}
           onChange={(e) => setTolerance(e.target.value)}
-          placeholder="0"
+          placeholder="-"
         />
       </div>
 
