@@ -112,6 +112,10 @@ function App() {
           placeholder="0"
         />
       </div>
+
+      <button className={styles.submit} type="button">
+        Solve!
+      </button>
     </>
   );
 }
