@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import Input from "../../components/Input";
-import logo from "../../assets/logo.png";
 import styles from "./styles.module.css";
 
 const getCoefficientLabel = (index: number) => {
@@ -34,92 +33,86 @@ function App() {
   }, [degree, setCoefficients]);
 
   return (
-    <div className={styles.appContainer}>
-      <div className={styles.container}>
-        <div className={styles.banner} />
+    <>
+      <p className={styles.description}>
+        This application numerically determines a function root transcendent f
+        real:
+      </p>
 
-        <img className={styles.logo} src={logo} alt="Functions" />
+      <p className={styles.function}>f(x) = p(x) + k * cos(x)</p>
+      <span className={styles.functionDetails}>
+        p(x): is a polynomial of degree n. <br />
+        k: is the coefficient of the circular cosine function.
+      </span>
 
-        <p className={styles.description}>
-          This application numerically determines a function root transcendent f
-          real:
-        </p>
+      <h1>Parameters</h1>
 
-        <p className={styles.function}>f(x) = p(x) + k * cos(x)</p>
-        <span className={styles.functionDetails}>
-          p(x): is a polynomial of degree n. <br />
-          k: is the coefficient of the circular cosine function.
-        </span>
+      <Input
+        label="Degree"
+        value={degree}
+        onChange={(e) => setDegree(e.target.value)}
+        placeholder="0"
+      />
 
-        <h1>Parameters</h1>
+      {Number(degree) > 0 && (
+        <>
+          <h2>Polynomial coefficients</h2>
 
+          <div className={styles.inputWrapper}>
+            {coefficients.map((item, index) => (
+              <Input
+                halfSize
+                label={getCoefficientLabel(index)}
+                placeholder="0"
+                value={coefficients[index]}
+                onChange={(e) => {
+                  const newCoefficients = coefficients.slice();
+                  newCoefficients[index] = e.target.value;
+
+                  setCoefficients(newCoefficients);
+                }}
+              />
+            ))}
+          </div>
+        </>
+      )}
+
+      <h2>Others</h2>
+
+      <div className={styles.inputWrapper}>
         <Input
-          label="Degree"
-          value={degree}
-          onChange={(e) => setDegree(e.target.value)}
+          halfSize
+          label="k value"
+          value={k}
+          onChange={(e) => setK(e.target.value)}
           placeholder="0"
         />
 
-        {Number(degree) > 0 && (
-          <>
-            <h2>Polynomial coefficients</h2>
+        <Input
+          halfSize
+          label="Iterative initial value"
+          value={initialValue}
+          onChange={(e) => setInitialValue(e.target.value)}
+          placeholder="0"
+        />
 
-            <div className={styles.inputWrapper}>
-              {coefficients.map((item, index) => (
-                <Input
-                  halfSize
-                  label={getCoefficientLabel(index)}
-                  placeholder="0"
-                  value={coefficients[index]}
-                  onChange={(e) => {
-                    const newCoefficients = coefficients.slice();
-                    newCoefficients[index] = e.target.value;
+        <Input
+          halfSize
+          label="Max iterations"
+          value={maxNumber}
+          onChange={(e) => setMaxNumber(e.target.value)}
+          placeholder="0"
+        />
 
-                    setCoefficients(newCoefficients);
-                  }}
-                />
-              ))}
-            </div>
-          </>
-        )}
-
-        <h2>Others</h2>
-
-        <div className={styles.inputWrapper}>
-          <Input
-            halfSize
-            label="k value"
-            value={k}
-            onChange={(e) => setK(e.target.value)}
-            placeholder="0"
-          />
-
-          <Input
-            halfSize
-            label="Iterative initial value"
-            value={initialValue}
-            onChange={(e) => setInitialValue(e.target.value)}
-            placeholder="0"
-          />
-
-          <Input
-            halfSize
-            label="Max iterations"
-            value={maxNumber}
-            onChange={(e) => setMaxNumber(e.target.value)}
-            placeholder="0"
-          />
-
-          <Input
-            halfSize
-            label="Method numerical tolerance"
-            value={tolerance}
-            onChange={(e) => setTolerance(e.target.value)}
-            placeholder="0"
-          />
-        </div>
+        <Input
+          halfSize
+          label="Method numerical tolerance"
+          value={tolerance}
+          onChange={(e) => setTolerance(e.target.value)}
+          placeholder="0"
+        />
       </div>
-    </div>
+    </>
   );
 }
 
