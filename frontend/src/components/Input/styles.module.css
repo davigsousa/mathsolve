@@ -1,9 +1,19 @@
 .container {
-  width: 70%;
+  margin: 10px 0;
+}
+
+.half {
+  width: 40%;
+}
+
+@media (max-width: 600px) {
+  .half {
+    width: 100%;
+  }
 }
 
 .container > p {
-  font-size: 30px;
+  font-size: 16px;
   color: var(--primary);
   font-weight: bold;
 }

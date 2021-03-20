@@ -1,16 +1,38 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Input from "./components/Input";
 import logo from "./assets/logo.png";
 import styles from "./styles.module.css";
 
+const getCoefficientLabel = (index: number) => {
+  if (index === 0) return "Independent coefficient";
+
+  return `Coefficient for x ** ${index}`;
+};
+
 function App() {
   const [step, setStep] = useState(0);
-  const [degree, setDegree] = useState("");
+  const [degree, setDegree] = useState("0");
   const [coefficients, setCoefficients] = useState<string[]>([]);
-  const [k, setK] = useState("");
-  const [initialValue, setInitialValue] = useState("");
-  const [maxNumber, setMaxNumber] = useState("");
-  const [tolerance, setTolerance] = useState("");
+  const [k, setK] = useState("0");
+  const [initialValue, setInitialValue] = useState("0");
+  const [maxNumber, setMaxNumber] = useState("0");
+  const [tolerance, setTolerance] = useState("0");
+
+  useEffect(() => {
+    const degreeNumber = Number(degree);
+
+    if (degreeNumber > 0) {
+      const newCoefficients = [];
+
+      for (let i = 0; i < degreeNumber + 1; i++) {
+        newCoefficients.push("0");
+      }
+
+      setCoefficients(newCoefficients);
+    } else {
+      setCoefficients([]);
+    }
+  }, [degree, setCoefficients]);
 
   return (
     <div className={styles.appContainer}>
@@ -38,6 +60,65 @@ function App() {
           onChange={(e) => setDegree(e.target.value)}
           placeholder="0"
         />
+
+        {Number(degree) > 0 && (
+          <>
+            <h2>Polynomial coefficients</h2>
+
+            <div className={styles.inputWrapper}>
+              {coefficients.map((item, index) => (
+                <Input
+                  halfSize
+                  label={getCoefficientLabel(index)}
+                  placeholder="0"
+                  value={coefficients[index]}
+                  onChange={(e) => {
+                    const newCoefficients = coefficients.slice();
+                    newCoefficients[index] = e.target.value;
+
+                    setCoefficients(newCoefficients);
+                  }}
+                />
+              ))}
+            </div>
+          </>
+        )}
+
+        <h2>Others</h2>
+
+        <div className={styles.inputWrapper}>
+          <Input
+            halfSize
+            label="k value"
+            value={k}
+            onChange={(e) => setK(e.target.value)}
+            placeholder="0"
+          />
+
+          <Input
+            halfSize
+            label="Iterative initial value"
+            value={initialValue}
+            onChange={(e) => setInitialValue(e.target.value)}
+            placeholder="0"
+          />
+
+          <Input
+            halfSize
+            label="Max iterations"
+            value={maxNumber}
+            onChange={(e) => setMaxNumber(e.target.value)}
+            placeholder="0"
+          />
+
+          <Input
+            halfSize
+            label="Method numerical tolerance"
+            value={tolerance}
+            onChange={(e) => setTolerance(e.target.value)}
+            placeholder="0"
+          />
+        </div>
       </div>
     </div>
   );
