@@ -15,6 +15,8 @@ function App() {
   return (
     <div className={styles.appContainer}>
       <div className={styles.container}>
+        <div className={styles.banner} />
+
         <img className={styles.logo} src={logo} alt="Functions" />
 
         <p className={styles.description}>
@@ -27,6 +29,8 @@ function App() {
           p(x): is a polynomial of degree n. <br />
           k: is the coefficient of the circular cosine function.
         </span>
+
+        <h1>Parameters</h1>
 
         <Input
           label="Degree"
