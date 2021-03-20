@@ -31,11 +31,11 @@ def solve(coefficients, k, initial_value, max_number, tolerance):
 
 def generate_error_chart(f, function_calls, initial_value, tolerance):
     parcel = math.ceil(function_calls * 0.1)
-    iteractions = np.arange(parcel, function_calls, parcel)
-    iteractions = np.append(iteractions, function_calls)
+    iterations = np.arange(parcel, function_calls, parcel)
+    iterations = np.append(iterations, function_calls)
 
     errors = []
-    for i in iteractions:
+    for i in iterations:
         estimated_root = fsolve(f, initial_value, xtol=tolerance, maxfev=i)
         estimated_value = f(estimated_root)
 
@@ -44,9 +44,9 @@ def generate_error_chart(f, function_calls, initial_value, tolerance):
 
     plt.figure()
     plt.grid()
-    plt.plot(iteractions, errors, "b-", label="Erro em função da iteração")
-    plt.xlabel("Iterações")
-    plt.ylabel("Erro absoluto")
+    plt.plot(iterations, errors, "b-", label="Error due to iteration")
+    plt.xlabel("Iterations")
+    plt.ylabel("Absolute error")
     plt.legend()
 
     filename = str(time()).replace(".", "-")
