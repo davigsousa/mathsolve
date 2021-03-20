@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import Input from "./components/Input";
-import logo from "./assets/logo.png";
+import Input from "../../components/Input";
+import logo from "../../assets/logo.png";
 import styles from "./styles.module.css";
 
 const getCoefficientLabel = (index: number) => {
@@ -10,7 +10,6 @@ const getCoefficientLabel = (index: number) => {
 };
 
 function App() {
-  const [step, setStep] = useState(0);
   const [degree, setDegree] = useState("0");
   const [coefficients, setCoefficients] = useState<string[]>([]);
   const [k, setK] = useState("0");
