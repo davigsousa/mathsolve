@@ -76,3 +76,4 @@ wcwidth
 webencodings
 Werkzeug
 widgetsnbextension
+gunicorn
