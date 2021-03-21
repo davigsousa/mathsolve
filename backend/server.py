@@ -28,3 +28,6 @@ def mathsolve():
     chart64 = transform_to_base64(chart_path)
 
     return jsonify({"root": root, "absolute_error": absolute_error, "chart": chart64})
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=80)
