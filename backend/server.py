@@ -29,5 +29,6 @@ def mathsolve():
 
     return jsonify({"root": root, "absolute_error": absolute_error, "chart": chart64})
 
+
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=80)
+    app.run(host="0.0.0.0", port=5000, threaded=True)
